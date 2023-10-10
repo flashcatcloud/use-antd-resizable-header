@@ -1,0 +1,1 @@
+// `style.css` has been deprecated. Please import `@minko-fe/use-antd-resizable-header/index.css` instead of `style.css`
