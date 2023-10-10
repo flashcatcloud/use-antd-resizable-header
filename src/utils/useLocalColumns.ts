@@ -98,7 +98,7 @@ function useLocalColumns<T extends ColumnOriginType<T>>({
     } catch (error) {
       console.error(error)
     }
-  }, [resizableColumns])
+  }, [resizableColumns, isResized])
 
   // reset
   const resetLocalColumns = useMemoizedFn(() => {
