@@ -8,7 +8,8 @@ interface LocalColumnsProp<T> {
   columnsState?: ColumnsStateType
   resizableColumns?: T[]
   columns?: T[]
-  isResized?: boolean
+  isResized: boolean
+  setIsResized: (isResized: boolean) => void
 }
 
 function mergeColumns<T extends any[]>(src: T, target: T, mergeKey: string): T {
@@ -32,6 +33,7 @@ function useLocalColumns<T extends ColumnOriginType<T>>({
   resizableColumns,
   columns,
   isResized,
+  setIsResized,
 }: LocalColumnsProp<T>) {
   // 列设置需要每一个column都有dataIndex或key
   const columnsProp = useGetDataIndexColumns(columns)
@@ -94,6 +96,7 @@ function useLocalColumns<T extends ColumnOriginType<T>>({
             }),
           }),
         )
+        setIsResized(false)
       }
     } catch (error) {
       console.error(error)

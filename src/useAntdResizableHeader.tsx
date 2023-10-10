@@ -91,6 +91,7 @@ function useAntdResizableHeader<ColumnType extends ColumnOriginType<ColumnType>>
     columns: columnsProp,
     resizableColumns,
     isResized,
+    setIsResized,
   })
 
   const [tableWidth, setTableWidth] = useSafeState<number>()

@@ -330,7 +330,8 @@ function useLocalColumns({
   columnsState,
   resizableColumns,
   columns,
-  isResized
+  isResized,
+  setIsResized
 }) {
   const columnsProp = useGetDataIndexColumns(columns);
   const initLocalColumns = useMemoizedFn(() => {
@@ -379,6 +380,7 @@ function useLocalColumns({
             })
           }))
         );
+        setIsResized(false);
       }
     } catch (error) {
     }
@@ -476,7 +478,8 @@ function useAntdResizableHeader(props) {
     columnsState,
     columns: columnsProp,
     resizableColumns,
-    isResized
+    isResized,
+    setIsResized
   });
   const [tableWidth, setTableWidth] = useSafeState();
   const [triggerRender, forceRender] = useReducer((s) => s + 1, 0);
