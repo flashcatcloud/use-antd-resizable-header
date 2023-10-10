@@ -8,6 +8,7 @@ interface LocalColumnsProp<T> {
   columnsState?: ColumnsStateType
   resizableColumns?: T[]
   columns?: T[]
+  isResized?: boolean
 }
 
 function mergeColumns<T extends any[]>(src: T, target: T, mergeKey: string): T {
@@ -30,6 +31,7 @@ function useLocalColumns<T extends ColumnOriginType<T>>({
   columnsState,
   resizableColumns,
   columns,
+  isResized,
 }: LocalColumnsProp<T>) {
   // 列设置需要每一个column都有dataIndex或key
   const columnsProp = useGetDataIndexColumns(columns)
@@ -72,25 +74,27 @@ function useLocalColumns<T extends ColumnOriginType<T>>({
     const storage = window[persistenceType]
 
     try {
-      storage.setItem(
-        persistenceKey,
-        JSON.stringify({
-          ...JSON.parse(storage?.getItem(persistenceKey) || '{}'),
-          resizableColumns: resizableColumns.map((col) => {
-            const localCol: ColumnOriginType<T> = {
-              dataIndex: col.dataIndex,
-              key: col.key,
-              width: col.width,
-              children: col.children,
-            }
+      if (isResized) {
+        storage.setItem(
+          persistenceKey,
+          JSON.stringify({
+            ...JSON.parse(storage?.getItem(persistenceKey) || '{}'),
+            resizableColumns: resizableColumns.map((col) => {
+              const localCol: ColumnOriginType<T> = {
+                dataIndex: col.dataIndex,
+                key: col.key,
+                width: col.width,
+                children: col.children,
+              }
 
-            if (isString(col.title)) {
-              localCol.title = col.title
-            }
-            return localCol
+              if (isString(col.title)) {
+                localCol.title = col.title
+              }
+              return localCol
+            }),
           }),
-        }),
-      )
+        )
+      }
     } catch (error) {
       console.error(error)
     }

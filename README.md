@@ -13,7 +13,7 @@
 ## 安装
 
 ```bash
-pnpm add @minko-fe/use-antd-resizable-header
+pnpm add @fc-components/use-antd-resizable-header
 ```
 
 ## API
@@ -53,8 +53,8 @@ pnpm add @minko-fe/use-antd-resizable-header
 ```tsx
 import { Button, Table } from 'antd'
 import ProTable from '@ant-design/pro-table'
-import { useAntdResizableHeader } from '@minko-fe/use-antd-resizable-header'
-import '@minko-fe/use-antd-resizable-header/index.css'
+import { useAntdResizableHeader } from '@fc-components/use-antd-resizable-header'
+import '@fc-components/use-antd-resizable-header/index.css'
 
 function App() {
   const columns = []
@@ -88,8 +88,8 @@ function App() {
 ```tsx
 import React, { useReducer } from 'react'
 import { Space, Table, Tag } from 'antd'
-import { useAntdResizableHeader } from '@minko-fe/use-antd-resizable-header'
-import '@minko-fe/use-antd-resizable-header/index.css'
+import { useAntdResizableHeader } from '@fc-components/use-antd-resizable-header'
+import '@fc-components/use-antd-resizable-header/index.css'
 
 const data = [
   {

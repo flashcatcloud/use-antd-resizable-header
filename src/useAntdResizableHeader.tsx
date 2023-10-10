@@ -84,10 +84,13 @@ function useAntdResizableHeader<ColumnType extends ColumnOriginType<ColumnType>>
 
   const lastestColumns = useLatest(resizableColumns)
 
+  const [isResized, setIsResized] = useSafeState<boolean>(false)
+
   const { localColumns: columns, resetLocalColumns } = useLocalColumns({
     columnsState,
     columns: columnsProp,
     resizableColumns,
+    isResized,
   })
 
   const [tableWidth, setTableWidth] = useSafeState<number>()
@@ -137,6 +140,7 @@ function useAntdResizableHeader<ColumnType extends ColumnOriginType<ColumnType>>
   }
 
   const onResizeEnd = (col: ColumnType) => (width: number) => {
+    setIsResized(true)
     onResizeEndProp?.({
       ...col,
       width,
